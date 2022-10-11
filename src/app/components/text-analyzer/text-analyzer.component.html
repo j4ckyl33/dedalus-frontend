@@ -1,0 +1,36 @@
+<div class="analyzer-container">
+
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Do you want to enable REST?</h2>
+        <label>Disable</label>
+        <input type="radio" formControlName="restToggle" [value]="false"/>
+        <label>Enable</label>
+        <input type="radio" formControlName="restToggle" [value]="true"/>
+        <br>
+        <h2>Do you want to count vowels or consonants?</h2>
+        <label>Vowels</label>
+        <input type="radio" formControlName="typeToAnalyze" value="vowels"/>
+        <label>Consonants</label>
+        <input type="radio" formControlName="typeToAnalyze" value="consonants"/>
+        <br>
+        <h2>Input for the text analyzer: </h2>
+        <input type="text" formControlName="userInput"/>
+        <button type="submit" [disabled]="!formGroup.valid" >Analyze</button>
+    </form>
+
+    <div class="output">
+        <div class="current-output">
+            <h2>Current output</h2>
+            <p *ngFor="let vowel of letterQuantityMap | keyvalue">
+                The Letter {{ vowel.key }} appears {{vowel.value}} times!
+            </p>
+        </div>
+
+        <div class="previous-output" >
+            <h2>Previous output</h2>
+            <p *ngFor="let vowel of prevLetterQuantityMap | keyvalue">
+                The Letter {{ vowel.key }} has appeared {{vowel.value}} times!
+            </p>
+        </div>
+    </div>
+</div>
